@@ -5,6 +5,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.core.scheduler.Schedulers;
 
+import java.sql.Time;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
@@ -106,4 +107,46 @@ public class AsyncTest {
     }
 
 
+    @Test
+    void test5(){
+        CountDownLatch countDownLatch = new CountDownLatch(3);
+        delayPrintThread(1).subscribeOn(Schedulers.parallel()).subscribe(null, null, countDownLatch::countDown);
+        delayPrintThread(2).subscribeOn(Schedulers.parallel()).subscribe(null, null, countDownLatch::countDown);
+        delayPrintThread(3).subscribeOn(Schedulers.parallel()).subscribe(null, null, countDownLatch::countDown);
+        try {
+            countDownLatch.await();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    @Test
+    void test4(){
+        CountDownLatch countDownLatch = new CountDownLatch(1);
+        Flux.just(1, 2, 3)
+                .parallel()
+                .runOn(Schedulers.parallel())
+                .flatMap(AsyncTest::delayPrintThread)
+                // 用了sequential后这里只complete一次，但是subscribe三次
+                .sequential()
+                .subscribe(System.out::println, null, countDownLatch::countDown);
+        try {
+            countDownLatch.await();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    static Mono<Integer> delayPrintThread(int i){
+        return Mono.fromSupplier(()->{
+            try {
+                TimeUnit.SECONDS.sleep(1);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println(i + " running on thread-" + Thread.currentThread().getName());
+            return i;
+        });
+    }
 }
