@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>top.itlq</groupId>
-    <artifactId>concurrent</artifactId>
+    <artifactId>java-test</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -19,11 +19,11 @@
             <artifactId>common</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
-
-        <!--连接数据库-->
+        <!-- https://mvnrepository.com/artifact/cglib/cglib -->
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+            <version>3.3.0</version>
+        </dependency>
     </dependencies>
-
-    <build>
-    </build>
-
 </project>
