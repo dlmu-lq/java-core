@@ -88,7 +88,7 @@ public class AsyncTest {
     void test3() throws InterruptedException {
         CountDownLatch countDownLatch = new CountDownLatch(2);
         Flux.just(1,2)
-                .publishOn(Schedulers.elastic())
+                .publishOn(Schedulers.parallel())
                 .map(a -> {
                     System.out.println(a);
                     try {
