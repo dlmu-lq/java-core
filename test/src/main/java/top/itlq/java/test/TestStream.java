@@ -1,12 +1,20 @@
 package top.itlq.java.test;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+import javax.management.ConstructorParameters;
+import javax.xml.namespace.QName;
+import java.beans.ConstructorProperties;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class TestStream {
     public static void main(String[] args) {
         Foo f1 = new Foo("l", 1, 2),
-        f2 = new Foo("l", 1, 2),
+                f2 = new Foo("l", 1, 2),
                 f3 = new Foo("l", 1, 2),
                 f4 = new Foo("c", 1, 2),
                 f5 = new Foo("c", 1, 2),
@@ -21,12 +29,30 @@ public class TestStream {
                             }
                             o.setM(o.getM() + p.getM());
                             o.setN(o.getN() + p.getN());
+                            o.setCount(o.getCount() == null ? 1 : o.getCount() + 1);
                             return o;
                         })
-                )));
+                ))
+        );
+        System.out.println(Stream.of(f1, f2, f3, f4, f5, f6, f7)
+                .collect(Collectors.groupingBy(
+                        Foo::getName,
+                        Collector.of(() -> new Foo(null, 0, 0), (o, p) -> {
+                            if (o.getName() == null) {
+                                o.setName(p.getName());
+                            }
+                            o.setM(o.getM() + p.getM());
+                            o.setN(o.getN() + p.getN());
+                            o.setCount(o.getCount() == null ? 1 : o.getCount() + 1);
+                        }, (o, p) -> o)
+                ))
+        );
     }
 }
 
+@Getter
+@Setter
+@ToString
 class Foo{
     private String name;
     private Integer m;
@@ -37,47 +63,5 @@ class Foo{
         this.name = name;
         this.m = m;
         this.n = n;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Integer getM() {
-        return m;
-    }
-
-    public void setM(Integer m) {
-        this.m = m;
-    }
-
-    public Integer getN() {
-        return n;
-    }
-
-    public void setN(Integer n) {
-        this.n = n;
-    }
-
-    public Integer getCount() {
-        return count;
-    }
-
-    public void setCount(Integer count) {
-        this.count = count;
-    }
-
-    @Override
-    public String toString() {
-        return "Foo{" +
-                "name='" + name + '\'' +
-                ", m=" + m +
-                ", n=" + n +
-                ", count=" + count +
-                '}';
     }
 }

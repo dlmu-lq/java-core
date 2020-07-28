@@ -11,29 +11,15 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
 @Slf4j
-public class SimpleClientServer {
-    @Test
-    void client(){
-        new Bootstrap()
-                .group(new NioEventLoopGroup())
-                .channel(NioSocketChannel.class)
-                .handler(new ChannelInitializer<SocketChannel>() {
-                    @Override
-                    protected void initChannel(SocketChannel ch) throws Exception {
-
-                    }
-                }).connect("localhost", 8080);
-    }
-
-    @Test
-    void server(){
+public class SimpleServer {
+    public static void main(String[] args) {
         new ServerBootstrap()
                 .group(new NioEventLoopGroup(), new NioEventLoopGroup())
                 .channel(NioServerSocketChannel.class)
                 .childHandler(new ChannelInitializer<SocketChannel>() {
                     @Override
                     protected void initChannel(SocketChannel ch) throws Exception {
-
+                        ch.pipeline().addLast(new SimpleServerHandler());
                     }
                 })
                 .bind(8080);
