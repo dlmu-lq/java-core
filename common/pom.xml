@@ -9,8 +9,8 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
         <commons.logging.version>1.2</commons.logging.version>
         <log4j2.version>2.12.1</log4j2.version>
         <slf4j.version>1.7.26</slf4j.version>
@@ -19,7 +19,7 @@
 
     <dependencies>
         <!--日志 log start-->
-        <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+        <!-- https://mvnrepositorjdk8 ubuntuy.com/artifact/org.slf4j/slf4j-api -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>

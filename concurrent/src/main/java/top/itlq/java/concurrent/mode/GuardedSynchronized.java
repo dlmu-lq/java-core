@@ -5,15 +5,21 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
+//import java.net.http.HttpClient;
+//import java.net.http.HttpRequest;
+//import java.net.http.HttpResponse;
 
 public class GuardedSynchronized {
 
     private static final Logger log = LoggerFactory.getLogger(GuardedSynchronized.class);
 
     public static void main(String[] args) {
+//                guardedObject.complete(download());
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         GuardedObject guardedObject = new GuardedObject();
         new Thread(()->{
             log.info("获取结果");
@@ -22,22 +28,22 @@ public class GuardedSynchronized {
 
         new Thread(()->{
             log.info("开始下载");
-            try {
-                guardedObject.complete(download());
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+//            try {
+////                guardedObject.complete(download());
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
         }, "t2").start();
     }
 
-    private static Object download() throws IOException, InterruptedException {
-        return HttpClient.newBuilder().build().send(
-                HttpRequest.newBuilder().GET().uri(URI.create("http://www.baidu.com")).build(),
-                HttpResponse.BodyHandlers.ofString()
-        ).body();
-    }
+//    private static Object download() throws IOException, InterruptedException {
+//        return HttpClient.newBuilder().build().send(
+//                HttpRequest.newBuilder().GET().uri(URI.create("http://www.baidu.com")).build(),
+//                HttpResponse.BodyHandlers.ofString()
+//        ).body();
+//    }
 }
 
 class GuardedObject{
