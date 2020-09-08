@@ -2,6 +2,7 @@ package top.itlq.java.net;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.Channel;
+import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
@@ -31,7 +32,16 @@ public class NettyClient {
                 });
 
         new Thread(()->{
-            Channel channel = bootstrap.connect("localhost", 8080).channel();
+            ChannelFuture channelFuture = bootstrap.connect("localhost", 8080);
+            channelFuture.addListener(future -> {
+                if(future.isSuccess()){
+                    log.info("连接成功");
+                }else{
+                    log.info("连接失败");
+                    // 增加重试逻辑
+                }
+            });
+            Channel channel = channelFuture.channel();
             while (true){
                 // 此处必须toString，不然发送的是对象？
                 channel.writeAndFlush(LocalDateTime.now().toString());
@@ -57,5 +67,18 @@ public class NettyClient {
                 }
             }
         }).start();
+    }
+
+    private void connect(Bootstrap bootstrap, String host, Integer port){
+        ChannelFuture channelFuture = bootstrap.connect(host, port);
+        channelFuture.addListener(future -> {
+            if(future.isSuccess()){
+                log.info("连接成功");
+            }else{
+                log.info("连接失败");
+                // 增加重试逻辑
+                connect(bootstrap, host, port);
+            }
+        });
     }
 }

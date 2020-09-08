@@ -1,8 +1,6 @@
 package top.itlq.thinking.java.concurrency_21.threadBasic;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadFactory;
+import java.util.concurrent.*;
 
 class ExceptionTask implements Runnable{
 
@@ -40,11 +38,21 @@ public class CaptureUncaughtException {
         }
         // 可以捕获
         new HandlerThreadFactory().newThread(new ExceptionTask()).start();
-        // 可以捕获
+        // 线程池
         ExecutorService executorService = Executors.newCachedThreadPool(new HandlerThreadFactory());
+        // 可以捕获，如果抛出异常线程会死掉，下次再重新创建？
         executorService.execute(new ExceptionTask());
+        // 只能在get结果时捕获，如果不get结果，将导致异常被吞，线程不会死
+        Future future = executorService.submit(new ExceptionTask());
+        try {
+            future.get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            System.out.println("submit时只能在future.get()中获得异常，不能使用ExceptionHandler");
+        }
         executorService.shutdown();
         // 可以设置Thread的静态域，默认未捕获异常处理器，在线程无自己的 UncaughtExceptionHandler 时被调用
-        Thread.setDefaultUncaughtExceptionHandler(new MyUncaughtExceptionHandler());
+//        Thread.setDefaultUncaughtExceptionHandler(new MyUncaughtExceptionHandler());
     }
 }

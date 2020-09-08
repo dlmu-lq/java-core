@@ -1,7 +1,6 @@
-package top.itlq.java.net;
+package top.itlq.java.net.im;
 
 import io.netty.bootstrap.ServerBootstrap;
-import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.SimpleChannelInboundHandler;
@@ -15,7 +14,7 @@ import lombok.extern.slf4j.Slf4j;
  * netty使用nio实现的server
  */
 @Slf4j
-public class NettyServer {
+public class ImServer {
     public static void main(String[] args) {
         ServerBootstrap serverBootstrap = new ServerBootstrap();
 
