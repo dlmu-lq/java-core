@@ -1,8 +1,9 @@
-package top.itlq.java.net.im;
+package top.itlq.java.net.im.provide;
 
 import com.google.gson.Gson;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufAllocator;
+import top.itlq.java.net.im.provide.request.LoginRequestPacket;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Optional;
@@ -10,7 +11,7 @@ import java.util.Optional;
 /**
  * @author liqiang
  * @description 通信协议，编码解码
- * 协议基本形式 魔数（4B） + 版本（1B） + 指令（2B） + 数据长度（4B） + 数据（？）
+ * 协议基本形式 魔数（4B） + 指令（2B） + 数据长度（4B） + 数据（？）
  * @date 2020/9/8 上午7:20
  */
 public class Protocol {
@@ -27,11 +28,19 @@ public class Protocol {
      * @return
      */
     public static ByteBuf encode(AbstractPacket packet){
-        ByteBuf byteBuf = ByteBufAllocator.DEFAULT.ioBuffer();
+        return encode(ByteBufAllocator.DEFAULT, packet);
+    }
+
+
+    /**
+     * 将数据包编码成要发送的数据
+     * @param packet
+     * @return
+     */
+    public static ByteBuf encode(ByteBufAllocator allocator, AbstractPacket packet){
+        ByteBuf byteBuf = allocator.ioBuffer();
         // 魔数
         byteBuf.writeInt(MAGIC_NUMBER);
-        // 版本
-        byteBuf.writeByte(packet.getVersion());
         // 指令
         byteBuf.writeShort(packet.getCommand().getValue());
         // 数据、长度
@@ -54,11 +63,9 @@ public class Protocol {
         if(MAGIC_NUMBER != i){
             return null;
         }
-        // 版本
-        byteBuf.skipBytes(1);
         // 指令
         short commandValue = byteBuf.readShort();
-        Optional<Class<? extends AbstractPacket>> optionalClass = CommandEnum.classFromValue(commandValue);
+        Optional<Class<? extends AbstractPacket>> optionalClass = CommandEnum.getClass(commandValue);
         if(!optionalClass.isPresent()){
             return null;
         }
@@ -70,8 +77,8 @@ public class Protocol {
     }
 
     public static void main(String[] args) {
-        LoginPacket loginPacket = new LoginPacket("1", "3");
-        ByteBuf encode = encode(loginPacket);
+        LoginRequestPacket loginRequestPacket = new LoginRequestPacket("1", "3");
+        ByteBuf encode = encode(loginRequestPacket);
         System.out.println(decode(encode));
     }
 }

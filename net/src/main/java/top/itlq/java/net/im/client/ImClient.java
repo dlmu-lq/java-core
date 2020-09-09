@@ -1,4 +1,4 @@
-package top.itlq.java.net.im;
+package top.itlq.java.net.im.client;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.Channel;
@@ -27,7 +27,8 @@ public class ImClient {
                 .handler(new ChannelInitializer<SocketChannel>() {
                     @Override
                     protected void initChannel(SocketChannel ch) throws Exception {
-                        ch.pipeline().addLast(new StringEncoder());
+//                        ch.pipeline().addLast(new StringEncoder());
+                        ch.pipeline().addLast(new ClientHandler());
                     }
                 });
          connect(bootstrap, "localhost", 8080);
