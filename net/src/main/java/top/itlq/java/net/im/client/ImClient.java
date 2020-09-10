@@ -9,6 +9,8 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.string.StringEncoder;
 import lombok.extern.slf4j.Slf4j;
+import top.itlq.java.net.im.provide.PacketDecoder;
+import top.itlq.java.net.im.provide.PacketEncoder;
 
 import java.time.LocalDateTime;
 import java.util.concurrent.TimeUnit;
@@ -28,7 +30,9 @@ public class ImClient {
                     @Override
                     protected void initChannel(SocketChannel ch) throws Exception {
 //                        ch.pipeline().addLast(new StringEncoder());
-                        ch.pipeline().addLast(new ClientHandler());
+//                        ch.pipeline().addLast(new ClientHandler());
+                        ch.pipeline().addLast(new PacketDecoder(), new LoginResponseHandler(),
+                                new MessageResponseHandler(), new PacketEncoder(), new ClientHandler());
                     }
                 });
          connect(bootstrap, "localhost", 8080);

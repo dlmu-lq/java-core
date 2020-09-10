@@ -35,25 +35,25 @@ public class ClientHandler extends ChannelInboundHandlerAdapter {
         startSendMessageThread(ctx.channel());
     }
 
-    @Override
-    public void channelRead(ChannelHandlerContext ctx, Object msg) {
-        log.info("客户端读取数据...");
-        ByteBuf byteBuf = (ByteBuf) msg;
-        AbstractPacket packet = Protocol.decode(byteBuf);
-        // 登录响应
-        if(packet instanceof LoginResponsePacket){
-            LoginResponsePacket loginResponsePacket = (LoginResponsePacket) packet;
-            if(loginResponsePacket.getSuccess()){
-                log.info("客户端登录成功...");
-                LoginUtils.markAsLogin(ctx.channel());
-            }else{
-                log.info("客户端登录失败，原因:{}", loginResponsePacket.getReason());
-            }
-        }else if(packet instanceof MessageResponsePacket){
-            MessageResponsePacket messageResponsePacket = (MessageResponsePacket) packet;
-            log.info("客户端收到消息：{}", messageResponsePacket.getContent());
-        }
-    }
+//    @Override
+//    public void channelRead(ChannelHandlerContext ctx, Object msg) {
+//        log.info("客户端读取数据...");
+//        ByteBuf byteBuf = (ByteBuf) msg;
+//        AbstractPacket packet = Protocol.decode(byteBuf);
+//        // 登录响应
+//        if(packet instanceof LoginResponsePacket){
+//            LoginResponsePacket loginResponsePacket = (LoginResponsePacket) packet;
+//            if(loginResponsePacket.getSuccess()){
+//                log.info("客户端登录成功...");
+//                LoginUtils.markAsLogin(ctx.channel());
+//            }else{
+//                log.info("客户端登录失败，原因:{}", loginResponsePacket.getReason());
+//            }
+//        }else if(packet instanceof MessageResponsePacket){
+//            MessageResponsePacket messageResponsePacket = (MessageResponsePacket) packet;
+//            log.info("客户端收到消息：{}", messageResponsePacket.getContent());
+//        }
+//    }
 
     // 简要的写一个根据控制台发送消息
     private void startSendMessageThread(Channel channel){

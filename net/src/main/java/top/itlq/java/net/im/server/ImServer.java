@@ -12,6 +12,8 @@ import io.netty.handler.codec.string.StringDecoder;
 import io.netty.util.concurrent.Future;
 import io.netty.util.concurrent.GenericFutureListener;
 import lombok.extern.slf4j.Slf4j;
+import top.itlq.java.net.im.provide.PacketDecoder;
+import top.itlq.java.net.im.provide.PacketEncoder;
 
 /**
  * netty使用nio实现的server
@@ -30,14 +32,9 @@ public class ImServer {
                     @Override
                     protected void initChannel(SocketChannel ch) {
                         log.info("服务端建立新连接...");
-//                        ch.pipeline().addLast(new StringDecoder());
-//                        ch.pipeline().addLast(new SimpleChannelInboundHandler<String>() {
-//                            @Override
-//                            protected void channelRead0(ChannelHandlerContext ctx, String msg) {
-//                                log.info("got message: {}", msg);
-//                            }
-//                        });
-                        ch.pipeline().addLast(new ServerHandler());
+//                        ch.pipeline().addLast(new ServerHandler());
+                        ch.pipeline().addLast(new PacketDecoder(), new LoginRequestHandler(),
+                                new MessageRequestHandler(), new PacketEncoder());
                     }
                 });
 

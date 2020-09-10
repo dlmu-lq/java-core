@@ -39,6 +39,11 @@ public class Protocol {
      */
     public static ByteBuf encode(ByteBufAllocator allocator, AbstractPacket packet){
         ByteBuf byteBuf = allocator.ioBuffer();
+        encode(byteBuf, packet);
+        return byteBuf;
+    }
+
+    public static void encode(ByteBuf byteBuf, AbstractPacket packet){
         // 魔数
         byteBuf.writeInt(MAGIC_NUMBER);
         // 指令
@@ -47,8 +52,6 @@ public class Protocol {
         byte[] bytes = new Gson().toJson(packet).getBytes(StandardCharsets.UTF_8);
         byteBuf.writeInt(bytes.length);
         byteBuf.writeBytes(bytes);
-
-        return byteBuf;
     }
 
 
