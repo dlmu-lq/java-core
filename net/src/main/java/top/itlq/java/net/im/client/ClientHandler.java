@@ -33,6 +33,13 @@ public class ClientHandler extends ChannelInboundHandlerAdapter {
         ctx.channel().writeAndFlush(encode);
         // 开启输入线程
         startSendMessageThread(ctx.channel());
+
+        // 测试发送1000次数据包
+//        for (int i = 0; i < 1000; i++) {
+//            MessageRequestPacket messageRequestPacket = new MessageRequestPacket();
+//            messageRequestPacket.setContent("你好呀你好呀你好呀你好呀你好呀你好呀你好呀");
+//            ctx.channel().writeAndFlush(Protocol.encode(messageRequestPacket));
+//        }
     }
 
 //    @Override

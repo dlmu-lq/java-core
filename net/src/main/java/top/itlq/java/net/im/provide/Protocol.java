@@ -3,6 +3,9 @@ package top.itlq.java.net.im.provide;
 import com.google.gson.Gson;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufAllocator;
+import io.netty.channel.ChannelHandlerContext;
+import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
+import io.netty.handler.codec.LineBasedFrameDecoder;
 import top.itlq.java.net.im.provide.request.LoginRequestPacket;
 
 import java.nio.charset.StandardCharsets;
@@ -19,7 +22,7 @@ public class Protocol {
     /**
      * 魔数
      */
-    private static final Integer MAGIC_NUMBER = 0x100320;
+    private static final int MAGIC_NUMBER = 0x100320;
 
 
     /**
@@ -42,6 +45,12 @@ public class Protocol {
         encode(byteBuf, packet);
         return byteBuf;
     }
+
+    /**
+     * 将数据包编码成要发送的数据放在传入的ByteBuf中
+     * @param byteBuf
+     * @param packet
+     */
 
     public static void encode(ByteBuf byteBuf, AbstractPacket packet){
         // 魔数
@@ -77,6 +86,32 @@ public class Protocol {
         byte[] data = new byte[dataLength];
         byteBuf.readBytes(data);
         return new Gson().fromJson(new String(data, StandardCharsets.UTF_8), optionalClass.get());
+    }
+
+    /**
+     * 根据协议拆包和校验魔数类
+     * TODO 数据包的顺序会不会出现错乱？
+     */
+    public static class Spliter extends LengthFieldBasedFrameDecoder{
+        public Spliter() {
+            super(Integer.MAX_VALUE, 6, 4);
+        }
+
+        /**
+         * 继承decode方法根据协议魔数判断丢弃无效连接
+         * @param ctx
+         * @param in
+         * @return
+         * @throws Exception
+         */
+        @Override
+        protected Object decode(ChannelHandlerContext ctx, ByteBuf in) throws Exception {
+            if(in.getInt(in.readerIndex()) != MAGIC_NUMBER){
+                ctx.channel().close();
+                return null;
+            }
+            return super.decode(ctx, in);
+        }
     }
 
     public static void main(String[] args) {

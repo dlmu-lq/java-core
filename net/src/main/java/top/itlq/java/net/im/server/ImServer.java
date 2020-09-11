@@ -8,12 +8,14 @@ import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.util.concurrent.Future;
 import io.netty.util.concurrent.GenericFutureListener;
 import lombok.extern.slf4j.Slf4j;
 import top.itlq.java.net.im.provide.PacketDecoder;
 import top.itlq.java.net.im.provide.PacketEncoder;
+import top.itlq.java.net.im.provide.Protocol;
 
 /**
  * netty使用nio实现的server
@@ -33,8 +35,13 @@ public class ImServer {
                     protected void initChannel(SocketChannel ch) {
                         log.info("服务端建立新连接...");
 //                        ch.pipeline().addLast(new ServerHandler());
-                        ch.pipeline().addLast(new PacketDecoder(), new LoginRequestHandler(),
-                                new MessageRequestHandler(), new PacketEncoder());
+                        ch.pipeline().addLast(
+                                new Protocol.Spliter(),
+                                new PacketDecoder(),
+                                new LoginRequestHandler(),
+                                new MessageRequestHandler(),
+                                new PacketEncoder()
+                        );
                     }
                 });
 
