@@ -3,7 +3,7 @@ package top.itlq.java.net.im.server;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import lombok.extern.slf4j.Slf4j;
-import top.itlq.java.net.im.provide.Protocol;
+import top.itlq.java.net.im.provide.User;
 import top.itlq.java.net.im.provide.request.LoginRequestPacket;
 import top.itlq.java.net.im.provide.response.LoginResponsePacket;
 
@@ -16,12 +16,14 @@ import top.itlq.java.net.im.provide.response.LoginResponsePacket;
 public class LoginRequestHandler extends SimpleChannelInboundHandler<LoginRequestPacket> {
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, LoginRequestPacket loginRequestPacket) throws Exception {
-        log.info("服务端开始登录, {}", loginRequestPacket.getImCode());
+        log.info("服务端开始登录, {}", loginRequestPacket);
         LoginResponsePacket loginResponsePacket = new LoginResponsePacket();
         if(valid(loginRequestPacket)){
-            log.info("服务端登录成功...");
-//                ctx.channel().attr();
+            User user = new User();
+            user.setUserName(loginRequestPacket.getUserName());
+            SessionUtils.bindSession(user, ctx.channel());
             loginResponsePacket.setSuccess(true);
+            log.info("服务端登录成功:{}", user);
         }else{
             log.info("服务端登录失败...");
             loginResponsePacket.setSuccess(false);
@@ -30,9 +32,16 @@ public class LoginRequestHandler extends SimpleChannelInboundHandler<LoginReques
         ctx.channel().writeAndFlush(loginResponsePacket);
     }
 
+    @Override
+    public void channelInactive(ChannelHandlerContext ctx) throws Exception {
+        SessionUtils.unBindSession(ctx.channel());
+        super.channelInactive(ctx);
+    }
+
     private boolean valid(LoginRequestPacket loginRequestPacket){
         // TODO 用户名密码验证
-        return "test".equals(loginRequestPacket.getImCode()) &&
-                "test".equals(loginRequestPacket.getImToken());
+//        return !StringUtil.isNullOrEmpty(loginRequestPacket.getImCode()) &&
+//                !StringUtil.isNullOrEmpty(loginRequestPacket.getImToken());
+        return true;
     }
 }

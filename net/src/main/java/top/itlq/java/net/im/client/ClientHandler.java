@@ -5,15 +5,10 @@ import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import lombok.extern.slf4j.Slf4j;
-import org.omg.Messaging.SYNC_WITH_TRANSPORT;
-import top.itlq.java.net.im.provide.AbstractPacket;
-import top.itlq.java.net.im.provide.AttributeKeys;
 import top.itlq.java.net.im.provide.LoginUtils;
 import top.itlq.java.net.im.provide.request.LoginRequestPacket;
 import top.itlq.java.net.im.provide.Protocol;
-import top.itlq.java.net.im.provide.request.MessageRequestPacket;
-import top.itlq.java.net.im.provide.response.LoginResponsePacket;
-import top.itlq.java.net.im.provide.response.MessageResponsePacket;
+import top.itlq.java.net.im.provide.request.MessagePacket;
 
 import java.util.Scanner;
 
@@ -28,11 +23,11 @@ public class ClientHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelActive(ChannelHandlerContext ctx){
         log.info("客户端开始登录...");
-        LoginRequestPacket loginRequestPacket = new LoginRequestPacket("test", "test");
-        ByteBuf encode = Protocol.encode(ctx.alloc(), loginRequestPacket);
-        ctx.channel().writeAndFlush(encode);
-        // 开启输入线程
-        startSendMessageThread(ctx.channel());
+//        LoginRequestPacket loginRequestPacket = new LoginRequestPacket("test", "test");
+//        ByteBuf encode = Protocol.encode(ctx.alloc(), loginRequestPacket);
+//        ctx.channel().writeAndFlush(encode);
+//        // 开启输入线程
+//        startSendMessageThread(ctx.channel());
 
         // 测试发送1000次数据包
 //        for (int i = 0; i < 1000; i++) {
@@ -70,9 +65,9 @@ public class ClientHandler extends ChannelInboundHandlerAdapter {
                     log.info("输入消息回车发送：");
                     Scanner scanner = new Scanner(System.in);
                     String message = scanner.nextLine();
-                    MessageRequestPacket messageRequestPacket = new MessageRequestPacket();
-                    messageRequestPacket.setContent(message);
-                    channel.writeAndFlush(Protocol.encode(messageRequestPacket));
+                    MessagePacket messagePacket = new MessagePacket();
+                    messagePacket.setContent(message);
+                    channel.writeAndFlush(Protocol.encode(messagePacket));
                 }
             }
         }).start();

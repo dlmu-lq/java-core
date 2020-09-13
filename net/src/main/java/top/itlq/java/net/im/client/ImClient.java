@@ -1,21 +1,16 @@
 package top.itlq.java.net.im.client;
 
 import io.netty.bootstrap.Bootstrap;
-import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
-import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
-import io.netty.handler.codec.string.StringEncoder;
 import lombok.extern.slf4j.Slf4j;
+import top.itlq.java.net.im.provide.LifeCycleTestChannelHandler;
 import top.itlq.java.net.im.provide.PacketDecoder;
 import top.itlq.java.net.im.provide.PacketEncoder;
 import top.itlq.java.net.im.provide.Protocol;
-
-import java.time.LocalDateTime;
-import java.util.concurrent.TimeUnit;
 
 /**
  * netty实现的socket客户端
@@ -34,11 +29,15 @@ public class ImClient {
 //                        ch.pipeline().addLast(new StringEncoder());
 //                        ch.pipeline().addLast(new ClientHandler());
                         ch.pipeline().addLast(
+                                new LifeCycleTestChannelHandler(),
+
                                 new Protocol.Spliter(),
                                 new PacketDecoder(),
-                                new LoginResponseHandler(),
-                                new MessageResponseHandler(),
-                                new PacketEncoder(), new ClientHandler());
+                                new LoginHandler(),
+                                new AuthHandler(),
+                                new MessageHandler(),
+                                new PacketEncoder()
+                        );
                     }
                 });
          connect(bootstrap, "localhost", 8080);

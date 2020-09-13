@@ -10,9 +10,17 @@ import top.itlq.java.net.im.provide.CommandEnum;
  * @date 2020/9/9 上午7:42
  */
 @Data
-public class MessageRequestPacket extends AbstractPacket {
+public class MessagePacket extends AbstractPacket {
 
     private static final long serialVersionUID = -4529678184403037680L;
+
+    private Long fromUserId;
+
+    private String fromUserName;
+
+    private Long toUserId;
+
+    private String toUserName;
 
     private String content;
 

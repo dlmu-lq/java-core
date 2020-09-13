@@ -4,9 +4,8 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import top.itlq.java.net.im.provide.request.LoginRequestPacket;
-import top.itlq.java.net.im.provide.request.MessageRequestPacket;
+import top.itlq.java.net.im.provide.request.MessagePacket;
 import top.itlq.java.net.im.provide.response.LoginResponsePacket;
-import top.itlq.java.net.im.provide.response.MessageResponsePacket;
 
 import java.util.Optional;
 
@@ -23,8 +22,7 @@ public enum CommandEnum {
      */
     LOGIN_REQUEST((short)1, "登录请求", LoginRequestPacket.class),
     LOGIN_RESPONSE((short)2, "登录响应", LoginResponsePacket.class),
-    MESSAGE_REQUEST((short)3, "发消息请求", MessageRequestPacket.class),
-    MESSAGE_RESPONSE((short)4, "消息响应", MessageResponsePacket.class),
+    MESSAGE_REQUEST((short)3, "发消息请求", MessagePacket.class),
     ;
 
     private short value;
