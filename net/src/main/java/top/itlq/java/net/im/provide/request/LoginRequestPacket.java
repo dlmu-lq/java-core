@@ -2,6 +2,7 @@ package top.itlq.java.net.im.provide.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import top.itlq.java.net.im.provide.AbstractPacket;
 import top.itlq.java.net.im.provide.CommandEnum;
 
@@ -12,9 +13,12 @@ import top.itlq.java.net.im.provide.CommandEnum;
  */
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class LoginRequestPacket extends AbstractPacket {
 
     private static final long serialVersionUID = -3704276055638906254L;
+
+    private String userName;
 
     private String imCode;
 

@@ -7,9 +7,8 @@ import lombok.extern.slf4j.Slf4j;
 import top.itlq.java.net.im.provide.AbstractPacket;
 import top.itlq.java.net.im.provide.request.LoginRequestPacket;
 import top.itlq.java.net.im.provide.Protocol;
-import top.itlq.java.net.im.provide.request.MessageRequestPacket;
+import top.itlq.java.net.im.provide.request.MessagePacket;
 import top.itlq.java.net.im.provide.response.LoginResponsePacket;
-import top.itlq.java.net.im.provide.response.MessageResponsePacket;
 
 /**
  * @author liqiang
@@ -37,11 +36,11 @@ public class ServerHandler extends ChannelInboundHandlerAdapter {
                 loginResponsePacket.setReason("验证失败");
             }
             ctx.channel().writeAndFlush(Protocol.encode(ctx.alloc(), loginResponsePacket));
-        }else if(packet instanceof MessageRequestPacket){
-            MessageRequestPacket messageRequestPacket = (MessageRequestPacket) packet;
-            log.info("服务端收到消息：{}", messageRequestPacket.getContent());
-            MessageResponsePacket messageResponsePacket = new MessageResponsePacket();
-            messageResponsePacket.setContent(String.format("收到你的消息了：%s", messageRequestPacket.getContent()));
+        }else if(packet instanceof top.itlq.java.net.im.provide.request.MessagePacket){
+            top.itlq.java.net.im.provide.request.MessagePacket messagePacket = (top.itlq.java.net.im.provide.request.MessagePacket) packet;
+            log.info("服务端收到消息：{}", messagePacket.getContent());
+            MessagePacket messageResponsePacket = new MessagePacket();
+            messageResponsePacket.setContent(String.format("收到你的消息了：%s", messagePacket.getContent()));
             ctx.channel().writeAndFlush(Protocol.encode(ctx.alloc(), messageResponsePacket));
         }
     }

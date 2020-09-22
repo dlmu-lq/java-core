@@ -115,7 +115,7 @@ public class Protocol {
     }
 
     public static void main(String[] args) {
-        LoginRequestPacket loginRequestPacket = new LoginRequestPacket("1", "3");
+        LoginRequestPacket loginRequestPacket = new LoginRequestPacket("1", "2", "3");
         ByteBuf encode = encode(loginRequestPacket);
         System.out.println(decode(encode));
     }

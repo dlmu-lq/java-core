@@ -10,7 +10,13 @@ import io.netty.util.AttributeKey;
 public interface AttributeKeys {
 
     /**
-     * 一些属性枚举
+     * 是否登录
      */
     AttributeKey<Boolean> LOGIN = AttributeKey.newInstance("login");
+
+    /**
+     * 连接用户id
+     */
+    AttributeKey<User> USER = AttributeKey.newInstance("user");
+
 }

@@ -2,17 +2,12 @@ package top.itlq.java.net.im.server;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
-import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInitializer;
-import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
-import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
-import io.netty.handler.codec.string.StringDecoder;
-import io.netty.util.concurrent.Future;
-import io.netty.util.concurrent.GenericFutureListener;
 import lombok.extern.slf4j.Slf4j;
+import top.itlq.java.net.im.provide.LifeCycleTestChannelHandler;
 import top.itlq.java.net.im.provide.PacketDecoder;
 import top.itlq.java.net.im.provide.PacketEncoder;
 import top.itlq.java.net.im.provide.Protocol;
@@ -36,10 +31,11 @@ public class ImServer {
                         log.info("服务端建立新连接...");
 //                        ch.pipeline().addLast(new ServerHandler());
                         ch.pipeline().addLast(
+                                new LifeCycleTestChannelHandler(),
                                 new Protocol.Spliter(),
                                 new PacketDecoder(),
                                 new LoginRequestHandler(),
-                                new MessageRequestHandler(),
+                                new MessageHandler(),
                                 new PacketEncoder()
                         );
                     }
