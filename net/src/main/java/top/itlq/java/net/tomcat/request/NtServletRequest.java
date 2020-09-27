@@ -17,7 +17,7 @@ public class NtServletRequest implements ServletRequest {
      * netty 解析完成的
      * @param httpRequest
      */
-    NtServletRequest(HttpRequest httpRequest){
+    public NtServletRequest(HttpRequest httpRequest){
         this.method = httpRequest.method().name();
         this.url = httpRequest.uri();
     }

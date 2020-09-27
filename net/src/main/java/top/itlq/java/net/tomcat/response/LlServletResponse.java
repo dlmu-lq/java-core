@@ -19,13 +19,19 @@ public class LlServletResponse implements ServletResponse{
      * BIO响应
      * @param outputStream
      */
-    public LlServletResponse(OutputStream outputStream){
+    public LlServletResponse(OutputStream outputStream) {
         this.outputStream = outputStream;
     }
+
     @Override
     public void write(byte[] data) {
         try {
-            outputStream.write(data);
+            //
+            String response = "HTTP/1.1 200 OK\n" +
+                    "Content-Type:text/plain;\n" +
+                    "\r\n" +
+                    new String(data);
+            outputStream.write(response.getBytes());
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -1,9 +1,20 @@
 package top.itlq.java.net.tomcat;
 
+import io.netty.bootstrap.ServerBootstrap;
+import io.netty.channel.*;
+import io.netty.channel.nio.NioEventLoopGroup;
+import io.netty.channel.socket.ServerSocketChannel;
+import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.handler.codec.http.HttpRequest;
+import io.netty.handler.codec.http.HttpRequestDecoder;
+import io.netty.handler.codec.http.HttpResponseEncoder;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.logging.log4j.core.util.FileUtils;
 import sun.nio.ch.IOUtil;
 import top.itlq.java.net.tomcat.request.LlServletRequest;
+import top.itlq.java.net.tomcat.request.NtServletRequest;
 import top.itlq.java.net.tomcat.response.LlServletResponse;
+import top.itlq.java.net.tomcat.response.NtServletResponse;
 
 import java.io.*;
 import java.net.InetSocketAddress;
@@ -11,6 +22,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Properties;
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -21,6 +33,7 @@ import java.util.concurrent.TimeUnit;
  * @description 简单的tomcat server
  * @date 2020/9/21 下午10:48
  */
+@Slf4j
 public class TomcatServer {
 
     private static final String PROPERTIES_CLASSPATH = "web.properties";
@@ -29,7 +42,8 @@ public class TomcatServer {
     public static void main(String[] args) throws IOException {
         TomcatServer tomcatServer = new TomcatServer();
         tomcatServer.loadConfig();
-        tomcatServer.startBioServer();
+//        tomcatServer.startBioServer();
+        tomcatServer.startNettyServer();
     }
 
     /**
@@ -74,7 +88,12 @@ public class TomcatServer {
 
                     LlServletRequest servletRequest = new LlServletRequest(inputStream);
                     LlServletResponse servletResponse = new LlServletResponse(outputStream);
-                    URL_SERVLET.get(servletRequest.getUrl()).doService(servletRequest, servletResponse);
+                    Servlet servlet = URL_SERVLET.get(servletRequest.getUrl());
+                    if(Objects.nonNull(servlet)) {
+                        servlet.doService(servletRequest, servletResponse);
+                    }else{
+                        log.error("wrong url:{}", servletRequest.getUrl());
+                    }
 
                     outputStream.flush();
                     outputStream.close();
@@ -85,5 +104,35 @@ public class TomcatServer {
                 }
             });
         }
+    }
+
+    private void startNettyServer(){
+        NioEventLoopGroup bossGroup = new NioEventLoopGroup();
+        NioEventLoopGroup workerGroup = new NioEventLoopGroup();
+        new ServerBootstrap()
+                .group(bossGroup, workerGroup)
+                .channel(NioServerSocketChannel.class)
+                .childHandler(new ChannelInitializer<Channel>() {
+                    @Override
+                    protected void initChannel(Channel ch) throws Exception {
+                        ch.pipeline().addLast(new HttpRequestDecoder());
+                        ch.pipeline().addLast(new HttpResponseEncoder());
+                        ch.pipeline().addLast(new SimpleChannelInboundHandler<HttpRequest>() {
+                            @Override
+                            protected void channelRead0(ChannelHandlerContext ctx, HttpRequest msg) throws Exception {
+                                NtServletRequest servletRequest = new NtServletRequest(msg);
+                                NtServletResponse servletResponse = new NtServletResponse(ctx);
+
+                                Servlet servlet = URL_SERVLET.get(servletRequest.getUrl());
+                                if(Objects.nonNull(servlet)) {
+                                    servlet.doService(servletRequest, servletResponse);
+                                }else{
+                                    log.error("wrong url:{}", servletRequest.getUrl());
+                                }
+                            }
+                        });
+                    }
+                })
+                .bind(8080);
     }
 }
