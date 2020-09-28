@@ -42,6 +42,7 @@ public class TomcatServer {
     public static void main(String[] args) throws IOException {
         TomcatServer tomcatServer = new TomcatServer();
         tomcatServer.loadConfig();
+        // todo 测试得到两个性能差不多？？？
 //        tomcatServer.startBioServer();
         tomcatServer.startNettyServer();
     }

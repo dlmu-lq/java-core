@@ -7,7 +7,7 @@ package top.itlq.java.net.rpc.api;
  */
 public interface IComputeRpcService {
     /**
-     * 添加
+     * 加法
      * @param a
      * @param b
      * @return
