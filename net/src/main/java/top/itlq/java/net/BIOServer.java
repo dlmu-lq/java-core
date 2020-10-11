@@ -1,6 +1,4 @@
-package top.itlq.java.net.old;
-
-import lombok.extern.slf4j.Slf4j;
+package top.itlq.java.net;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -10,8 +8,7 @@ import java.net.Socket;
 /**
  * 传统阻塞服务端
  */
-@Slf4j
-public class IOServer {
+public class BIOServer {
     public static void main(String[] args) throws IOException {
         ServerSocket serverSocket = new ServerSocket(8080);
         while (true){
@@ -22,7 +19,7 @@ public class IOServer {
                     while (true){
                         byte[] bytes = new byte[1024];
                         if (inputStream.read(bytes) > 0){
-                            log.info("got message: {}", new String(bytes));
+                            System.out.println(String.format("got message: %s", new String(bytes)));
                         }
                     }
                 } catch (IOException e) {
