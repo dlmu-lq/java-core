@@ -1,5 +1,3 @@
-package top.itlq.java.net;
-
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
@@ -33,7 +31,7 @@ public class NIOSimpleServer {
             }
             for (SocketChannel socketChannel1 : socketChannelList) {
                 ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
-                // 涉及系统调用
+                // 涉及系统调用，且需要不停的调用
                 int read = socketChannel1.read(byteBuffer);
                 if (read > 0) {
                     byteBuffer.flip();

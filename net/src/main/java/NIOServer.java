@@ -1,17 +1,10 @@
-package top.itlq.java.net;
-
-import lombok.extern.slf4j.Slf4j;
-
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.*;
-import java.nio.charset.Charset;
 import java.util.Iterator;
-import java.util.Objects;
 import java.util.Set;
 
-@Slf4j
 public class NIOServer {
     public static void main(String[] args) throws IOException {
         Selector selector = Selector.open();
@@ -30,12 +23,9 @@ public class NIOServer {
                 if (selectionKey.isAcceptable()) {
                     try {
                         SocketChannel channel = ((ServerSocketChannel) selectionKey.channel()).accept();
-                        if (channel == null) {
-                            System.out.println("acceptable fd without channel accept");
-                        }
                         channel.configureBlocking(false);
                         SelectionKey readKey = channel.register(selector, SelectionKey.OP_READ);
-                        System.out.println("readKey:" + readKey);
+                        System.out.println("connect success");
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -47,9 +37,8 @@ public class NIOServer {
                     byteBuffer.flip();
                     System.out.println(String.format("got message: %s", new String(byteBuffer.array())));
                     // 写，为什么要
-                    SelectionKey writeKey = channel.register(selector, SelectionKey.OP_WRITE);
-                    writeKey.attach(String.format("got your message: %s", new String(byteBuffer.array())).getBytes());
-
+//                    SelectionKey writeKey = channel.register(selector, SelectionKey.OP_WRITE);
+//                    writeKey.attach(String.format("got your message: %s", new String(byteBuffer.array())).getBytes());
                     // 这里非阻塞写入不一定能够全部写完成
 //                    ByteBuffer byteBufferWrite = ByteBuffer.wrap(String.format("got your message: %s", new String(byteBuffer.array())).getBytes());
 //                    channel.write(byteBufferWrite);
