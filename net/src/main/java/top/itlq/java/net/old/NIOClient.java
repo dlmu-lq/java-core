@@ -21,7 +21,7 @@ public class NIOClient {
         new Thread(()->{
             SocketChannel socketChannel = null;
             try {
-                socketChannel = SocketChannel.open(new InetSocketAddress("localhost", 8080));
+                socketChannel = SocketChannel.open(new InetSocketAddress("localhost", 8081));
                 socketChannel.configureBlocking(false);
                 socketChannel.register(selector, SelectionKey.OP_READ);
                 while (true){

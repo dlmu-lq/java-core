@@ -32,7 +32,7 @@ public class NettyClient {
                 });
 
         new Thread(()->{
-            ChannelFuture channelFuture = bootstrap.connect("localhost", 8080);
+            ChannelFuture channelFuture = bootstrap.connect("localhost", 8081);
             channelFuture.addListener(future -> {
                 if(future.isSuccess()){
                     log.info("连接成功");

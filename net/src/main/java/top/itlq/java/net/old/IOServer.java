@@ -13,7 +13,7 @@ import java.net.Socket;
 @Slf4j
 public class IOServer {
     public static void main(String[] args) throws IOException {
-        ServerSocket serverSocket = new ServerSocket(8080);
+        ServerSocket serverSocket = new ServerSocket(8081);
         while (true){
             final Socket socket = serverSocket.accept();
             new Thread(()->{

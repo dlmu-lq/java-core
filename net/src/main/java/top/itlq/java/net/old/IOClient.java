@@ -15,7 +15,7 @@ public class IOClient {
         new Thread(()->{
             Socket socket = null;
             try {
-                socket = new Socket("localhost", 8080);
+                socket = new Socket("localhost", 8081);
                 OutputStream outputStream = socket.getOutputStream();
                 while (true){
                     outputStream.write(LocalDate.now().toString().getBytes());
@@ -31,7 +31,7 @@ public class IOClient {
         new Thread(()->{
             Socket socket = null;
             try {
-                socket = new Socket("localhost", 8080);
+                socket = new Socket("localhost", 8081);
                 OutputStream outputStream = socket.getOutputStream();
                 while (true){
                     outputStream.write(LocalDate.now().toString().getBytes());
