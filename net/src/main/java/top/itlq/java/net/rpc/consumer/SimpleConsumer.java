@@ -9,10 +9,10 @@ import top.itlq.java.net.rpc.api.IComputeRpcService;
  */
 public class SimpleConsumer {
 
-    public static IComputeRpcService computeRpcService = ObjectProxy.getProxy(IComputeRpcService.class);
 
     public static void main(String[] args) {
-        Integer result = computeRpcService.add(1, 2);
+        IComputeRpcService computeRpcService = IntefaceProxy.getProxy(IComputeRpcService.class);
+        Integer result = computeRpcService.add(1, 1);
         System.out.println(result);
     }
 }
