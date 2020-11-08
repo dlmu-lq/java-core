@@ -22,7 +22,7 @@ public class NIOSimpleServer {
         serverSocketChannel.configureBlocking(false);
 
         while (true){
-            TimeUnit.MILLISECONDS.sleep(1000);
+            TimeUnit.MILLISECONDS.sleep(2000);
             SocketChannel socketChannel = serverSocketChannel.accept();
             if (socketChannel != null) {
                 System.out.println("connect success");
