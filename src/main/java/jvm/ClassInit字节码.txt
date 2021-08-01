@@ -1,0 +1,167 @@
+Classfile /E:/Projects/java-core/src/main/java/jvm/ClassInit.class
+  Last modified 2021-8-1; size 1060 bytes
+  MD5 checksum 85f81941eebec16d8138e3e4d78059db
+  Compiled from "ClassInit.java"
+public class jvm.ClassInit
+  minor version: 0
+  major version: 52
+  flags: ACC_PUBLIC, ACC_SUPER
+Constant pool:
+   #1 = Methodref          #19.#44        // java/lang/Object."<init>":()V
+   #2 = Class              #45            // jvm/ClassInit
+   #3 = String             #46            // ≤‚ ‘a
+   #4 = Fieldref           #2.#47         // jvm/ClassInit.oa:Ljava/lang/String;
+   #5 = Fieldref           #2.#48         // jvm/ClassInit.b:Ljava/lang/String;
+   #6 = Fieldref           #2.#49         // jvm/ClassInit.ob:Ljava/lang/String;
+   #7 = Methodref          #50.#51        // java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+   #8 = Fieldref           #2.#52         // jvm/ClassInit.oc:Ljava/lang/Integer;
+   #9 = Fieldref           #2.#53         // jvm/ClassInit.d:Ljava/lang/Integer;
+  #10 = Fieldref           #2.#54         // jvm/ClassInit.od:Ljava/lang/Integer;
+  #11 = Fieldref           #55.#56        // java/lang/System.out:Ljava/io/PrintStream;
+  #12 = Fieldref           #2.#57         // jvm/ClassInit.classInit:Ljvm/ClassInit;
+  #13 = Methodref          #58.#59        // java/io/PrintStream.println:(Ljava/lang/String;)V
+  #14 = Methodref          #58.#60        // java/io/PrintStream.println:(Ljava/lang/Object;)V
+  #15 = Class              #61            // java/lang/String
+  #16 = String             #62            // ≤‚ ‘b
+  #17 = Methodref          #15.#63        // java/lang/String."<init>":(Ljava/lang/String;)V
+  #18 = Methodref          #2.#44         // jvm/ClassInit."<init>":()V
+  #19 = Class              #64            // java/lang/Object
+  #20 = Utf8               oa
+  #21 = Utf8               Ljava/lang/String;
+  #22 = Utf8               ob
+  #23 = Utf8               oc
+  #24 = Utf8               Ljava/lang/Integer;
+  #25 = Utf8               od
+  #26 = Utf8               classInit
+  #27 = Utf8               Ljvm/ClassInit;
+  #28 = Utf8               b
+  #29 = Utf8               a
+  #30 = Utf8               ConstantValue
+  #31 = Utf8               c
+  #32 = Utf8               I
+  #33 = Integer            22
+  #34 = Utf8               d
+  #35 = Utf8               <init>
+  #36 = Utf8               ()V
+  #37 = Utf8               Code
+  #38 = Utf8               LineNumberTable
+  #39 = Utf8               main
+  #40 = Utf8               ([Ljava/lang/String;)V
+  #41 = Utf8               <clinit>
+  #42 = Utf8               SourceFile
+  #43 = Utf8               ClassInit.java
+  #44 = NameAndType        #35:#36        // "<init>":()V
+  #45 = Utf8               jvm/ClassInit
+  #46 = Utf8               ≤‚ ‘a
+  #47 = NameAndType        #20:#21        // oa:Ljava/lang/String;
+  #48 = NameAndType        #28:#21        // b:Ljava/lang/String;
+  #49 = NameAndType        #22:#21        // ob:Ljava/lang/String;
+  #50 = Class              #65            // java/lang/Integer
+  #51 = NameAndType        #66:#67        // valueOf:(I)Ljava/lang/Integer;
+  #52 = NameAndType        #23:#24        // oc:Ljava/lang/Integer;
+  #53 = NameAndType        #34:#24        // d:Ljava/lang/Integer;
+  #54 = NameAndType        #25:#24        // od:Ljava/lang/Integer;
+  #55 = Class              #68            // java/lang/System
+  #56 = NameAndType        #69:#70        // out:Ljava/io/PrintStream;
+  #57 = NameAndType        #26:#27        // classInit:Ljvm/ClassInit;
+  #58 = Class              #71            // java/io/PrintStream
+  #59 = NameAndType        #72:#73        // println:(Ljava/lang/String;)V
+  #60 = NameAndType        #72:#74        // println:(Ljava/lang/Object;)V
+  #61 = Utf8               java/lang/String
+  #62 = Utf8               ≤‚ ‘b
+  #63 = NameAndType        #35:#73        // "<init>":(Ljava/lang/String;)V
+  #64 = Utf8               java/lang/Object
+  #65 = Utf8               java/lang/Integer
+  #66 = Utf8               valueOf
+  #67 = Utf8               (I)Ljava/lang/Integer;
+  #68 = Utf8               java/lang/System
+  #69 = Utf8               out
+  #70 = Utf8               Ljava/io/PrintStream;
+  #71 = Utf8               java/io/PrintStream
+  #72 = Utf8               println
+  #73 = Utf8               (Ljava/lang/String;)V
+  #74 = Utf8               (Ljava/lang/Object;)V
+{
+  public jvm.ClassInit();
+    descriptor: ()V
+    flags: ACC_PUBLIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: aload_0
+             5: ldc           #3                  // String ≤‚ ‘a
+         7: putfield      #4                  // Field oa:Ljava/lang/String;
+        10: aload_0
+        11: getstatic     #5                  // Field b:Ljava/lang/String;
+        14: putfield      #6                  // Field ob:Ljava/lang/String;
+        17: aload_0
+        18: bipush        22
+        20: invokestatic  #7                  // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+        23: putfield      #8                  // Field oc:Ljava/lang/Integer;
+        26: aload_0
+        27: getstatic     #9                  // Field d:Ljava/lang/Integer;
+        30: putfield      #10                 // Field od:Ljava/lang/Integer;
+        33: return
+      LineNumberTable:
+        line 33: 0
+        line 34: 4
+        line 35: 10
+        line 36: 17
+        line 37: 26
+        line 38: 33
+
+  public static void main(java.lang.String[]);
+    descriptor: ([Ljava/lang/String;)V
+    flags: ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: getstatic     #11                 // Field java/lang/System.out:Ljava/io/PrintStream;
+         3: getstatic     #12                 // Field classInit:Ljvm/ClassInit;
+         6: getfield      #4                  // Field oa:Ljava/lang/String;
+         9: invokevirtual #13                 // Method java/io/PrintStream.println:(Ljava/lang/String;)V
+        12: getstatic     #11                 // Field java/lang/System.out:Ljava/io/PrintStream;
+        15: getstatic     #12                 // Field classInit:Ljvm/ClassInit;
+        18: getfield      #6                  // Field ob:Ljava/lang/String;
+        21: invokevirtual #13                 // Method java/io/PrintStream.println:(Ljava/lang/String;)V
+        24: getstatic     #11                 // Field java/lang/System.out:Ljava/io/PrintStream;
+        27: getstatic     #12                 // Field classInit:Ljvm/ClassInit;
+        30: getfield      #8                  // Field oc:Ljava/lang/Integer;
+        33: invokevirtual #14                 // Method java/io/PrintStream.println:(Ljava/lang/Object;)V
+        36: getstatic     #11                 // Field java/lang/System.out:Ljava/io/PrintStream;
+        39: getstatic     #12                 // Field classInit:Ljvm/ClassInit;
+        42: getfield      #10                 // Field od:Ljava/lang/Integer;
+        45: invokevirtual #14                 // Method java/io/PrintStream.println:(Ljava/lang/Object;)V
+        48: return
+      LineNumberTable:
+        line 41: 0
+        line 42: 12
+        line 43: 24
+        line 44: 36
+        line 45: 48
+
+  static {};
+    descriptor: ()V
+    flags: ACC_STATIC
+    Code:
+      stack=3, locals=0, args_size=0
+         0: new           #15                 // class java/lang/String
+         3: dup
+         4: ldc           #16                 // String ≤‚ ‘b
+         6: invokespecial #17                 // Method java/lang/String."<init>":(Ljava/lang/String;)V
+         9: putstatic     #5                  // Field b:Ljava/lang/String;
+        12: bipush        22
+        14: invokestatic  #7                  // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+        17: putstatic     #9                  // Field d:Ljava/lang/Integer;
+        20: new           #2                  // class jvm/ClassInit
+        23: dup
+        24: invokespecial #18                 // Method "<init>":()V
+        27: putstatic     #12                 // Field classInit:Ljvm/ClassInit;
+        30: return
+      LineNumberTable:
+        line 22: 0
+        line 28: 12
+        line 30: 20
+        line 31: 30
+}
+SourceFile: "ClassInit.java"
