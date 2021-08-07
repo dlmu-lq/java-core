@@ -141,3 +141,160 @@ Constant pool:
           offset_delta = 5
 }
 SourceFile: "CatchExceptionFinally.java"
+Classfile /E:/Projects/java-core/src/main/java/jvm/CatchExceptionFinally.class
+  Last modified 2021-8-2; size 712 bytes
+  MD5 checksum fcabfd31d2349aedc0427c0baad092af
+  Compiled from "CatchExceptionFinally.java"
+public class jvm.CatchExceptionFinally
+  minor version: 0
+  major version: 52
+  flags: ACC_PUBLIC, ACC_SUPER
+Constant pool:
+   #1 = Methodref          #8.#25         // java/lang/Object."<init>":()V
+   #2 = Fieldref           #7.#26         // jvm/CatchExceptionFinally.tryBlock:I
+   #3 = Fieldref           #7.#27         // jvm/CatchExceptionFinally.finallyBlock:I
+   #4 = Class              #28            // java/lang/Exception
+   #5 = Fieldref           #7.#29         // jvm/CatchExceptionFinally.catchBlock:I
+   #6 = Fieldref           #7.#30         // jvm/CatchExceptionFinally.methodExit:I
+   #7 = Class              #31            // jvm/CatchExceptionFinally
+   #8 = Class              #32            // java/lang/Object
+   #9 = Utf8               tryBlock
+  #10 = Utf8               I
+  #11 = Utf8               catchBlock
+  #12 = Utf8               finallyBlock
+  #13 = Utf8               methodExit
+  #14 = Utf8               <init>
+  #15 = Utf8               ()V
+  #16 = Utf8               Code
+  #17 = Utf8               LineNumberTable
+  #18 = Utf8               test
+  #19 = Utf8               ()I
+  #20 = Utf8               StackMapTable
+  #21 = Class              #28            // java/lang/Exception
+  #22 = Class              #33            // java/lang/Throwable
+  #23 = Utf8               SourceFile
+  #24 = Utf8               CatchExceptionFinally.java
+  #25 = NameAndType        #14:#15        // "<init>":()V
+  #26 = NameAndType        #9:#10         // tryBlock:I
+  #27 = NameAndType        #12:#10        // finallyBlock:I
+  #28 = Utf8               java/lang/Exception
+  #29 = NameAndType        #11:#10        // catchBlock:I
+  #30 = NameAndType        #13:#10        // methodExit:I
+  #31 = Utf8               jvm/CatchExceptionFinally
+  #32 = Utf8               java/lang/Object
+  #33 = Utf8               java/lang/Throwable
+{
+  public jvm.CatchExceptionFinally();
+    descriptor: ()V
+    flags: ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: return
+      LineNumberTable:
+        line 3: 0
+
+  public int test();
+    descriptor: ()I
+    flags: ACC_PUBLIC
+    Code:
+      stack=2, locals=5, args_size=1
+         0: iconst_0
+         1: istore_1
+         2: iload_1
+         3: bipush        100
+         5: if_icmpge     72
+         8: aload_0
+         9: iconst_0
+        10: putfield      #2                  // Field tryBlock:I
+        13: iload_1
+        14: bipush        50
+        16: if_icmpge     26
+        19: aload_0
+        20: iconst_2
+        21: putfield      #3                  // Field finallyBlock:I
+        24: iconst_3
+        25: ireturn
+        26: iload_1
+        27: bipush        80
+        29: if_icmpge     39
+        32: aload_0
+        33: iconst_2
+        34: putfield      #3                  // Field finallyBlock:I
+        37: iconst_3
+        38: ireturn
+        39: iconst_1
+        40: istore_2
+        41: aload_0
+        42: iconst_2
+        43: putfield      #3                  // Field finallyBlock:I
+        46: iconst_3
+        47: ireturn
+        48: astore_2
+        49: aload_0
+        50: iconst_1
+        51: putfield      #5                  // Field catchBlock:I
+        54: iconst_2
+        55: istore_3
+        56: aload_0
+        57: iconst_2
+        58: putfield      #3                  // Field finallyBlock:I
+        61: iconst_3
+        62: ireturn
+        63: astore        4
+        65: aload_0
+        66: iconst_2
+        67: putfield      #3                  // Field finallyBlock:I
+        70: iconst_3
+        71: ireturn
+        72: aload_0
+        73: iconst_3
+        74: putfield      #6                  // Field methodExit:I
+        77: iconst_4
+        78: ireturn
+      Exception table:
+         from    to  target type
+             8    19    48   Class java/lang/Exception
+            26    32    48   Class java/lang/Exception
+            39    41    48   Class java/lang/Exception
+             8    19    63   any
+            26    32    63   any
+            39    41    63   any
+            48    56    63   any
+            63    65    63   any
+      LineNumberTable:
+        line 10: 0
+        line 12: 8
+        line 13: 13
+        line 24: 19
+        line 25: 24
+        line 15: 26
+        line 24: 32
+        line 25: 37
+        line 18: 39
+        line 24: 41
+        line 25: 46
+        line 20: 48
+        line 21: 49
+        line 22: 54
+        line 24: 56
+        line 25: 61
+        line 24: 63
+        line 25: 70
+        line 28: 72
+        line 29: 77
+      StackMapTable: number_of_entries = 6
+        frame_type = 252 /* append */
+          offset_delta = 2
+          locals = [ int ]
+        frame_type = 23 /* same */
+        frame_type = 12 /* same */
+        frame_type = 72 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Exception ]
+        frame_type = 78 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+        frame_type = 250 /* chop */
+          offset_delta = 8
+}
+SourceFile: "CatchExceptionFinally.java"
