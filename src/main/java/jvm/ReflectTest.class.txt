@@ -1,0 +1,377 @@
+Classfile /E:/Projects/java-core/src/main/java/jvm/ReflectTest.class
+  Last modified 2021-8-3; size 1188 bytes
+  MD5 checksum dc64414c4f27bd096a72cbc65bf770df
+  Compiled from "ReflectTest.java"
+public class jvm.ReflectTest
+  minor version: 0
+  major version: 52
+  flags: ACC_PUBLIC, ACC_SUPER
+Constant pool:
+   #1 = Methodref          #8.#34         // java/lang/Object."<init>":()V
+   #2 = String             #35            // jvm.ReflectTest
+   #3 = Methodref          #5.#36         // java/lang/Class.forName:(Ljava/lang/String;)Ljava/lang/Class;
+   #4 = String             #21            // target
+   #5 = Class              #37            // java/lang/Class
+   #6 = Fieldref           #38.#39        // java/lang/Integer.TYPE:Ljava/lang/Class;
+   #7 = Methodref          #5.#40         // java/lang/Class.getMethod:(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+   #8 = Class              #41            // java/lang/Object
+   #9 = Methodref          #38.#42        // java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+  #10 = Methodref          #43.#44        // java/lang/System.currentTimeMillis:()J
+  #11 = Integer            2000000000
+  #12 = Integer            100000000
+  #13 = Fieldref           #43.#45        // java/lang/System.out:Ljava/io/PrintStream;
+  #14 = Methodref          #46.#47        // java/io/PrintStream.println:(J)V
+  #15 = Methodref          #48.#49        // java/lang/reflect/Method.invoke:(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
+  #16 = Class              #50            // jvm/ReflectTest
+  #17 = Utf8               <init>
+  #18 = Utf8               ()V
+  #19 = Utf8               Code
+  #20 = Utf8               LineNumberTable
+  #21 = Utf8               target
+  #22 = Utf8               (I)V
+  #23 = Utf8               main
+  #24 = Utf8               ([Ljava/lang/String;)V
+  #25 = Utf8               StackMapTable
+  #26 = Class              #51            // "[Ljava/lang/String;"
+  #27 = Class              #37            // java/lang/Class
+  #28 = Class              #52            // java/lang/reflect/Method
+  #29 = Class              #53            // "[Ljava/lang/Object;"
+  #30 = Utf8               Exceptions
+  #31 = Class              #54            // java/lang/Exception
+  #32 = Utf8               SourceFile
+  #33 = Utf8               ReflectTest.java
+  #34 = NameAndType        #17:#18        // "<init>":()V
+  #35 = Utf8               jvm.ReflectTest
+  #36 = NameAndType        #55:#56        // forName:(Ljava/lang/String;)Ljava/lang/Class;
+  #37 = Utf8               java/lang/Class
+  #38 = Class              #57            // java/lang/Integer
+  #39 = NameAndType        #58:#59        // TYPE:Ljava/lang/Class;
+  #40 = NameAndType        #60:#61        // getMethod:(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+  #41 = Utf8               java/lang/Object
+  #42 = NameAndType        #62:#63        // valueOf:(I)Ljava/lang/Integer;
+  #43 = Class              #64            // java/lang/System
+  #44 = NameAndType        #65:#66        // currentTimeMillis:()J
+  #45 = NameAndType        #67:#68        // out:Ljava/io/PrintStream;
+  #46 = Class              #69            // java/io/PrintStream
+  #47 = NameAndType        #70:#71        // println:(J)V
+  #48 = Class              #52            // java/lang/reflect/Method
+  #49 = NameAndType        #72:#73        // invoke:(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
+  #50 = Utf8               jvm/ReflectTest
+  #51 = Utf8               [Ljava/lang/String;
+  #52 = Utf8               java/lang/reflect/Method
+  #53 = Utf8               [Ljava/lang/Object;
+  #54 = Utf8               java/lang/Exception
+  #55 = Utf8               forName
+  #56 = Utf8               (Ljava/lang/String;)Ljava/lang/Class;
+  #57 = Utf8               java/lang/Integer
+  #58 = Utf8               TYPE
+  #59 = Utf8               Ljava/lang/Class;
+  #60 = Utf8               getMethod
+  #61 = Utf8               (Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+  #62 = Utf8               valueOf
+  #63 = Utf8               (I)Ljava/lang/Integer;
+  #64 = Utf8               java/lang/System
+  #65 = Utf8               currentTimeMillis
+  #66 = Utf8               ()J
+  #67 = Utf8               out
+  #68 = Utf8               Ljava/io/PrintStream;
+  #69 = Utf8               java/io/PrintStream
+  #70 = Utf8               println
+  #71 = Utf8               (J)V
+  #72 = Utf8               invoke
+  #73 = Utf8               (Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
+{
+  public jvm.ReflectTest();
+    descriptor: ()V
+    flags: ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: return
+      LineNumberTable:
+        line 5: 0
+
+  public static void target(int);
+    descriptor: (I)V
+    flags: ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=0, locals=1, args_size=1
+         0: return
+      LineNumberTable:
+        line 8: 0
+
+  public static void main(java.lang.String[]) throws java.lang.Exception;
+    descriptor: ([Ljava/lang/String;)V
+    flags: ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=6, locals=9, args_size=1
+         0: ldc           #2                  // String jvm.ReflectTest
+         2: invokestatic  #3                  // Method java/lang/Class.forName:(Ljava/lang/String;)Ljava/lang/Class;
+         5: astore_1
+         6: aload_1
+         7: ldc           #4                  // String target
+         9: iconst_1
+        10: anewarray     #5                  // class java/lang/Class
+        13: dup
+        14: iconst_0
+        15: getstatic     #6                  // Field java/lang/Integer.TYPE:Ljava/lang/Class;
+        18: aastore
+        19: invokevirtual #7                  // Method java/lang/Class.getMethod:(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+        22: astore_2
+        23: iconst_1
+        24: anewarray     #8                  // class java/lang/Object
+        27: astore_3
+        28: aload_3
+        29: iconst_0
+        30: sipush        128
+        33: invokestatic  #9                  // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+        36: aastore
+        37: invokestatic  #10                 // Method java/lang/System.currentTimeMillis:()J
+        40: lstore        4
+        42: iconst_1
+        43: istore        6
+        45: iload         6
+        47: ldc           #11                 // int 2000000000
+        49: if_icmpgt     93
+        52: iload         6
+        54: ldc           #12                 // int 100000000
+        56: irem
+        57: ifne          80
+        60: invokestatic  #10                 // Method java/lang/System.currentTimeMillis:()J
+        63: lstore        7
+        65: getstatic     #13                 // Field java/lang/System.out:Ljava/io/PrintStream;
+        68: lload         7
+        70: lload         4
+        72: lsub
+        73: invokevirtual #14                 // Method java/io/PrintStream.println:(J)V
+        76: lload         7
+        78: lstore        4
+        80: aload_2
+        81: aconst_null
+        82: aload_3
+        83: invokevirtual #15                 // Method java/lang/reflect/Method.invoke:(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
+        86: pop
+        87: iinc          6, 1
+        90: goto          45
+        93: return
+      LineNumberTable:
+        line 11: 0
+        line 12: 6
+        line 14: 23
+        line 15: 28
+        line 17: 37
+        line 18: 42
+        line 19: 52
+        line 20: 60
+        line 21: 65
+        line 22: 76
+        line 25: 80
+        line 18: 87
+        line 27: 93
+      StackMapTable: number_of_entries = 3
+        frame_type = 255 /* full_frame */
+          offset_delta = 45
+          locals = [ class "[Ljava/lang/String;", class java/lang/Class, class java/lang/reflect/Method, class "[Ljava/lang/Object;", long, int ]
+          stack = []
+        frame_type = 34 /* same */
+        frame_type = 250 /* chop */
+          offset_delta = 12
+    Exceptions:
+      throws java.lang.Exception
+}
+
+
+
+
+
+SourceFile: "ReflectTest.java"
+Classfile /E:/Projects/java-core/src/main/java/jvm/ReflectTest.class
+  Last modified 2021-8-3; size 1198 bytes
+  MD5 checksum cd0b206866addd8b3ca672cfaa900643
+  Compiled from "ReflectTest.java"
+public class jvm.ReflectTest
+  minor version: 0
+  major version: 52
+  flags: ACC_PUBLIC, ACC_SUPER
+Constant pool:
+   #1 = Methodref          #8.#34         // java/lang/Object."<init>":()V
+   #2 = String             #35            // jvm.ReflectTest
+   #3 = Methodref          #5.#36         // java/lang/Class.forName:(Ljava/lang/String;)Ljava/lang/Class;
+   #4 = String             #21            // target
+   #5 = Class              #37            // java/lang/Class
+   #6 = Fieldref           #38.#39        // java/lang/Integer.TYPE:Ljava/lang/Class;
+   #7 = Methodref          #5.#40         // java/lang/Class.getMethod:(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+   #8 = Class              #41            // java/lang/Object
+   #9 = Methodref          #38.#42        // java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+  #10 = Methodref          #43.#44        // java/lang/System.currentTimeMillis:()J
+  #11 = Integer            2000000000
+  #12 = Integer            100000000
+  #13 = Fieldref           #43.#45        // java/lang/System.out:Ljava/io/PrintStream;
+  #14 = Methodref          #46.#47        // java/io/PrintStream.println:(J)V
+  #15 = Methodref          #48.#49        // java/lang/reflect/Method.invoke:(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
+  #16 = Class              #50            // jvm/ReflectTest
+  #17 = Utf8               <init>
+  #18 = Utf8               ()V
+  #19 = Utf8               Code
+  #20 = Utf8               LineNumberTable
+  #21 = Utf8               target
+  #22 = Utf8               (I)V
+  #23 = Utf8               main
+  #24 = Utf8               ([Ljava/lang/String;)V
+  #25 = Utf8               StackMapTable
+  #26 = Class              #51            // "[Ljava/lang/String;"
+  #27 = Class              #37            // java/lang/Class
+  #28 = Class              #52            // java/lang/reflect/Method
+  #29 = Class              #53            // "[Ljava/lang/Object;"
+  #30 = Utf8               Exceptions
+  #31 = Class              #54            // java/lang/Exception
+  #32 = Utf8               SourceFile
+  #33 = Utf8               ReflectTest.java
+  #34 = NameAndType        #17:#18        // "<init>":()V
+  #35 = Utf8               jvm.ReflectTest
+  #36 = NameAndType        #55:#56        // forName:(Ljava/lang/String;)Ljava/lang/Class;
+  #37 = Utf8               java/lang/Class
+  #38 = Class              #57            // java/lang/Integer
+  #39 = NameAndType        #58:#59        // TYPE:Ljava/lang/Class;
+  #40 = NameAndType        #60:#61        // getMethod:(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+  #41 = Utf8               java/lang/Object
+  #42 = NameAndType        #62:#63        // valueOf:(I)Ljava/lang/Integer;
+  #43 = Class              #64            // java/lang/System
+  #44 = NameAndType        #65:#66        // currentTimeMillis:()J
+  #45 = NameAndType        #67:#68        // out:Ljava/io/PrintStream;
+  #46 = Class              #69            // java/io/PrintStream
+  #47 = NameAndType        #70:#71        // println:(J)V
+  #48 = Class              #52            // java/lang/reflect/Method
+  #49 = NameAndType        #72:#73        // invoke:(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
+  #50 = Utf8               jvm/ReflectTest
+  #51 = Utf8               [Ljava/lang/String;
+  #52 = Utf8               java/lang/reflect/Method
+  #53 = Utf8               [Ljava/lang/Object;
+  #54 = Utf8               java/lang/Exception
+  #55 = Utf8               forName
+  #56 = Utf8               (Ljava/lang/String;)Ljava/lang/Class;
+  #57 = Utf8               java/lang/Integer
+  #58 = Utf8               TYPE
+  #59 = Utf8               Ljava/lang/Class;
+  #60 = Utf8               getMethod
+  #61 = Utf8               (Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+  #62 = Utf8               valueOf
+  #63 = Utf8               (I)Ljava/lang/Integer;
+  #64 = Utf8               java/lang/System
+  #65 = Utf8               currentTimeMillis
+  #66 = Utf8               ()J
+  #67 = Utf8               out
+  #68 = Utf8               Ljava/io/PrintStream;
+  #69 = Utf8               java/io/PrintStream
+  #70 = Utf8               println
+  #71 = Utf8               (J)V
+  #72 = Utf8               invoke
+  #73 = Utf8               (Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
+{
+  public jvm.ReflectTest();
+    descriptor: ()V
+    flags: ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: return
+      LineNumberTable:
+        line 5: 0
+
+  public static void target(int);
+    descriptor: (I)V
+    flags: ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=0, locals=1, args_size=1
+         0: return
+      LineNumberTable:
+        line 8: 0
+
+  public static void main(java.lang.String[]) throws java.lang.Exception;
+    descriptor: ([Ljava/lang/String;)V
+    flags: ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=6, locals=9, args_size=1
+         0: ldc           #2                  // String jvm.ReflectTest
+         2: invokestatic  #3                  // Method java/lang/Class.forName:(Ljava/lang/String;)Ljava/lang/Class;
+         5: astore_1
+         6: aload_1
+         7: ldc           #4                  // String target
+         9: iconst_1
+        10: anewarray     #5                  // class java/lang/Class
+        13: dup
+        14: iconst_0
+        15: getstatic     #6                  // Field java/lang/Integer.TYPE:Ljava/lang/Class;
+        18: aastore
+        19: invokevirtual #7                  // Method java/lang/Class.getMethod:(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+        22: astore_2
+        23: iconst_1
+        24: anewarray     #8                  // class java/lang/Object
+        27: astore_3
+        28: aload_3
+        29: iconst_0
+        30: bipush        127
+        32: invokestatic  #9                  // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+        35: aastore
+        36: invokestatic  #10                 // Method java/lang/System.currentTimeMillis:()J
+        39: lstore        4
+        41: iconst_1
+        42: istore        6
+        44: iload         6
+        46: ldc           #11                 // int 2000000000
+        48: if_icmpgt     103
+        51: iload         6
+        53: ldc           #12                 // int 100000000
+        55: irem
+        56: ifne          79
+        59: invokestatic  #10                 // Method java/lang/System.currentTimeMillis:()J
+        62: lstore        7
+        64: getstatic     #13                 // Field java/lang/System.out:Ljava/io/PrintStream;
+        67: lload         7
+        69: lload         4
+        71: lsub
+        72: invokevirtual #14                 // Method java/io/PrintStream.println:(J)V
+        75: lload         7
+        77: lstore        4
+        79: aload_2
+        80: aconst_null
+        81: iconst_1
+        82: anewarray     #8                  // class java/lang/Object
+        85: dup
+        86: iconst_0
+        87: bipush        127
+        89: invokestatic  #9                  // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+        92: aastore
+        93: invokevirtual #15                 // Method java/lang/reflect/Method.invoke:(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
+        96: pop
+        97: iinc          6, 1
+       100: goto          44
+       103: return
+      LineNumberTable:
+        line 11: 0
+        line 12: 6
+        line 15: 23
+        line 16: 28
+        line 18: 36
+        line 19: 41
+        line 20: 51
+        line 21: 59
+        line 22: 64
+        line 23: 75
+        line 26: 79
+        line 19: 97
+        line 28: 103
+      StackMapTable: number_of_entries = 3
+        frame_type = 255 /* full_frame */
+          offset_delta = 44
+          locals = [ class "[Ljava/lang/String;", class java/lang/Class, class java/lang/reflect/Method, class "[Ljava/lang/Object;", long, int ]
+          stack = []
+        frame_type = 34 /* same */
+        frame_type = 250 /* chop */
+          offset_delta = 23
+    Exceptions:
+      throws java.lang.Exception
+}
+SourceFile: "ReflectTest.java"
