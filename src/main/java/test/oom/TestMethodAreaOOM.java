@@ -15,7 +15,8 @@ import java.lang.reflect.Method;
  */
 public class TestMethodAreaOOM {
     public static void main(String[] args) {
-        while (true) {
+        int i = 1;
+        while (i-- > 0) {
             Enhancer enhancer = new Enhancer();
             enhancer.setSuperclass(OOMObject.class);
             enhancer.setUseCache(false);
@@ -25,7 +26,9 @@ public class TestMethodAreaOOM {
                 }
             });
             enhancer.create();
+            System.out.println(i);
         }
+        System.out.println(i);
     }
 
     static class OOMObject{

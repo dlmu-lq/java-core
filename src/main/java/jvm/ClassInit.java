@@ -1,6 +1,8 @@
 package jvm;
 
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * @author liqiang04
  * @description TODO
@@ -37,11 +39,12 @@ public class ClassInit {
         od = d;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         System.out.println(classInit.oa);
         System.out.println(classInit.ob);
         System.out.println(classInit.oc);
         System.out.println(classInit.od);
+        TimeUnit.HOURS.sleep(1);
     }
 
 }
